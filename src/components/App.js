@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 import Menu from "./components/Menu";
 import './../styles/App.css'; 
-
+ 
 function App(){
   const menu = [
   // Breakfast
