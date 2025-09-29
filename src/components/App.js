@@ -4,7 +4,7 @@ import Menu from "./components/Menu";
 import './../styles/App.css'; 
  
 function App(){
-  const menu = [
+  const menu = [ 
   // Breakfast
   {
     id: 1,
