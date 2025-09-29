@@ -1,5 +1,5 @@
 import React from "react";
-import "./styles.css";
+import './../styles/App.css'; 
 function Menu(props) {
   const menuItems = props.menuItems;
   const handleSort = props.handleSort;
