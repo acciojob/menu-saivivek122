@@ -1,51 +1,85 @@
 import React, { useState } from "react";
-import items from "./data";
-import Categories from "./Categories";
-import Menu from "./Menu" 
- 
-import '../styles/App.css';
+import Menu from "./Menu";
+import "../styles/App.css";
 
-const allCategories = ["all","breakfast","lunch","shakes"]
-// const allCat = items.map(item=>item.category)
-// const tempSet = new Set(allCat)
-// let tempArr = [...tempSet]
-
-// 1st way
-// const finalArr = ["all",...tempArr]
-
-//2nd way
-// tempArr.unshift("all")
-// console.log(tempArr,finalArr)
-
-// const allCategories = ["all",...new Set(items.map((item)=>item.category))]
+const allDishes = [
+  {
+    id: 1,
+    name: "Pancakes",
+    category: "breakfast",
+    price: "$5.99",
+    img: "https://via.placeholder.com/100",
+  },
+  {
+    id: 2,
+    name: "Omelette",
+    category: "breakfast",
+    price: "$4.50",
+    img: "https://via.placeholder.com/100",
+  },
+  {
+    id: 3,
+    name: "Burger",
+    category: "lunch",
+    price: "$8.99",
+    img: "https://via.placeholder.com/100",
+  },
+  {
+    id: 4,
+    name: "Grilled Sandwich",
+    category: "lunch",
+    price: "$6.50",
+    img: "https://via.placeholder.com/100",
+  },
+  {
+    id: 5,
+    name: "Strawberry Shake",
+    category: "shakes",
+    price: "$3.99",
+    img: "https://via.placeholder.com/100",
+  },
+  {
+    id: 6,
+    name: "Chocolate Shake",
+    category: "shakes",
+    price: "$4.25",
+    img: "https://via.placeholder.com/100",
+  },
+];
 
 const App = () => {
+  const [dishes, setDishes] = useState(allDishes);
+  const [category, setCategory] = useState("all");
 
-    const [menuItems,setMenuItems] = useState(items)
-    const [categories,setCategories] = useState(allCategories)
-
-
-    const filterItems = (categoryName) => {
-        if(categoryName === "all"){
-            setMenuItems(items)
-        }else{
-            const newItems = items.filter((item)=>item.category===categoryName)
-            setMenuItems(newItems)
-        }
+  const handleFilter = (cat) => {
+    setCategory(cat);
+    if (cat === "all") {
+      setDishes(allDishes);
+    } else {
+      setDishes(allDishes.filter((dish) => dish.category === cat));
     }
-    return(
-        <main id="main">
-            <section className="menu section">
-                <div className="title">
-                    <h2>Our Menu</h2>
-                    <div className="underline"></div>    
-                </div>
-                <Categories categories={categories} filterItems={filterItems}/>
-                <Menu items={menuItems} />
-            </section>
-        </main>
-    )
+  };
 
-}
+  return (
+    <div id="main">
+      <h1 className="title">Menu</h1>
+      <div className="buttons">
+        <button id="filter-btn-1" onClick={() => handleFilter("breakfast")}>
+          Breakfast
+        </button>
+        <button id="filter-btn-2" onClick={() => handleFilter("lunch")}>
+          Lunch
+        </button>
+        <button id="filter-btn-3" onClick={() => handleFilter("shakes")}>
+          Shakes
+        </button>
+        <button id="filter-btn-all" onClick={() => handleFilter("all")}>
+          All
+        </button>
+      </div>
+      <Menu dishes={dishes} />
+    </div>
+  );
+};
 
 export default App;
