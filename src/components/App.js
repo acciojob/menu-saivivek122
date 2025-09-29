@@ -4,7 +4,7 @@ import "./../styles/App.css";
 
 function App() {
   const menu = [
-    // Breakfast
+    // Breakfast 
     {
       id: 1,
       title: "Pancake Stack",
